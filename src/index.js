@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {LifeCycleSampleApp} from "./lifeCycleSample/LifeCycleSampleApp";
+import ScrollBox from "./scrollBox/ScrollBox";
 
 ReactDOM.render(
   <React.StrictMode>
       {/*<Counter/>*/}
       {/*<App/>*/}
       {/*<CounterWithUseReducer/>*/}
-      <LifeCycleSampleApp/>
+      {/*<LifeCycleSampleApp/>*/}
+      <ScrollBox/>
   </React.StrictMode>,
   document.getElementById('root')
 );
