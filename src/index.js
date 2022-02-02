@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Counter from "./Counter";
+import {LifeCycleSampleApp} from "./lifeCycleSample/LifeCycleSampleApp";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/*<App />*/}
-      <Counter/>
+      {/*<Counter/>*/}
+      {/*<App/>*/}
+      {/*<CounterWithUseReducer/>*/}
+      <LifeCycleSampleApp/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,7 +11,7 @@ function reducer(state, action) {
     }
 }
 
-function CounterWithUserReducer() {
+function CounterWithUseReducer() {
     const [number, dispatch] = useReducer(reducer, 0);
 
     const onIncrease = () => {
@@ -31,4 +31,4 @@ function CounterWithUserReducer() {
     );
 }
 
-export default CounterWithUserReducer;
+export default CounterWithUseReducer;
