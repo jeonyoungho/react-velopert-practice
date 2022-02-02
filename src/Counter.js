@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
-function Counter() {
-  const [number, setNumber] = useState(0);
+class Counter extends Component {
+    state = {
+        counter: 0,
+        fixed: 1
+    };
+    handleIncrease = () => {
+        this.setState(
+            {
+                counter: this.state.counter + 1
+            },
+            () => {
+                console.log(this.state.counter);
+            }
+        );
+    };
 
-  const onIncrease = () => {
-    setNumber(prevNumber => prevNumber + 1);
-  }
+    handleDecrease = () => {
+        this.setState(state => ({
+            counter: state.counter - 1
+        }));
+    };
 
-  const onDecrease = () => {
-    setNumber(prevNumber => prevNumber - 1);
-  }
-
-  return (
-    <div>
-      <h1>{number}</h1>
-      <button onClick={onIncrease}>+1</button>
-      <button onClick={onDecrease}>-1</button>
-    </div>
-  );
+    render() {
+        return (
+            <div>
+                <h1>{this.state.counter}</h1>
+                <button onClick={this.handleIncrease}>+1</button>
+                <button onClick={this.handleDecrease}>-1</button>
+                <p>고정된 값: {this.state.fixed}</p>
+            </div>
+        );
+    }
 }
 
 export default Counter;
