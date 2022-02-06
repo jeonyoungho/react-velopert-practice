@@ -56,7 +56,7 @@ const fullWidthStyle = css`
   css`
       width: 100%;
       justify-content: center;
-      & + & {
+      &:not(:first-child) {
         margin-left: 0;
         margin-top: 1rem;
       }
