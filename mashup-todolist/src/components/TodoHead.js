@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useTodoState } from '../TodoContext';
+import styled, { css } from 'styled-components';
+import { useTodoDispatch, useTodoState } from '../TodoContext';
+import { MdDone } from 'react-icons/md';
 
 const TodoHeadBlock = styled.div`
   padding: 48px 32px 24px 32px;
@@ -15,18 +16,47 @@ const TodoHeadBlock = styled.div`
     color: #868e96;
     font-size: 21px;
   }
-  .tasks-left {
-    color: #20c997;
-    font-size: 18px;
+  .tasks-info {
+    display: flex;
+    align-items: center;
     margin-top: 40px;
-    font-weight: bold;
+    
+    > * ~ * {
+      margin-left: 15px;
+    }
+    
+    > .tasks-left {
+      color: #20c997;
+      font-size: 18px;
+      font-weight: bold;
+    }
   }
+
+`;
+
+const CheckCircle = styled.div`
+  width: 17px;
+  height: 17px;
+  border: 1px solid #ced4da;
+  border-radius: 16px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  cursor: pointer;
+  ${props =>
+  props.done &&
+  css`
+      border: 1px solid #38d9a9;
+      color: #38d9a9;
+    `}
 `;
 
 function TodoHead() {
-
   const todos = useTodoState();
   const undoneTasks = todos.filter(todo => !todo.done);
+  const isAllDoneTasks = undoneTasks.every(task => task.done);
 
   const today = new Date();
   const dateString = today.toLocaleDateString('ko-KR', {
@@ -38,11 +68,22 @@ function TodoHead() {
     weekday: 'long'
   });
 
+  const dispatch = useTodoDispatch();
+  const onAllToggle = () => dispatch({
+    type: 'ALL_TOGGLE'
+  });
+
   return (
     <TodoHeadBlock>
       <h1>{dateString}</h1>
       <div className="day">{dayName}</div>
-      <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
+      <div className='tasks-info'>
+        <span className="tasks-left">할 일 {undoneTasks.length}개 남음</span>
+        <CheckCircle done={isAllDoneTasks} onClick={onAllToggle}>
+          {isAllDoneTasks && <MdDone />}
+        </CheckCircle>
+      </div>
+
     </TodoHeadBlock>
   )
 }

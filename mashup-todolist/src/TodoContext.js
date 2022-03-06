@@ -23,6 +23,21 @@ const initialTodos = [
   }
 ];
 
+const handleAllToggle = (todos) => {
+  if (todos.every(todo => todo.done) || todos.every(todo => !todo.done)) { // 전부 체크된 경우 또는 전부 체크 안된 경우
+    return todos.map(todo => {
+      return {
+        ...todo,
+        done: !todo.done
+      }
+    });
+  }
+
+  return todos.map(todo =>
+    !todo.done ? {...todo, done: !todo.done} : todo
+  );
+}
+
 function todoReducer(state, action) {
   switch (action.type) {
     case 'CREATE':
@@ -33,6 +48,8 @@ function todoReducer(state, action) {
       )
     case 'REMOVE':
       return state.filter(todo => todo.id !== action.id);
+    case "ALL_TOGGLE":
+      return handleAllToggle(state);
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
