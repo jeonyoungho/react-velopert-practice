@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs", // 컴파일된 코드가 어떤 모듈 시스템을 사용할지 정의한다. common 으로 하면 export default Sample 을 하게 됐을 때 컴파일 된 코드에서는 exports.default = helloWorld 로 변환해주지만 이 값을 es2015 로 하면 export default Sample 을 그대로 유지하게 된다.
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "./dist"
+  }
+}
